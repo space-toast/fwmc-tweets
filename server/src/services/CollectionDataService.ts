@@ -31,7 +31,12 @@ export class CollectionDataService {
         try {
             const doesCollectionExist = await AppDataSource.manager.findOne(Collection, { where: { name: collectionName } });
 
-            return doesCollectionExist !== undefined;
+            if (doesCollectionExist != null) {
+                return true;
+            } else {
+                return false;
+            }
+
         } catch (error) {
             throw error;
         }

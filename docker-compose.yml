@@ -17,6 +17,15 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      SYNC_API_KEY: ${SYNC_API_KEY}
+      TWITTER_USERNAME: ${TWITTER_USERNAME}
+      TWITTER_PASSWORD: ${TWITTER_PASSWORD}
+      TWITTER_EMAIL: ${TWITTER_EMAIL}
 
   nginx:
     image: nginx:latest
