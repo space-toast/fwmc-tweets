@@ -34,7 +34,7 @@ services:
     depends_on:
       - server
     environment:
-      SERVER_HOSTNAME: ${SERVER_HOSTNAME}
+      VITE_SERVER_HOSTNAME: ${VITE_SERVER_HOSTNAME}
 
   nginx:
     image: nginx:latest

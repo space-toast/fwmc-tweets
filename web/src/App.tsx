@@ -3,6 +3,7 @@ import "./App.css";
 import { FilterTweets } from "./components/FilterTweets";
 import { TweetCardList } from "./components/TweetCardList";
 import { CollectionList } from "./components/CollectionList";
+const SERVER_HOSTNAME = import.meta.env.VITE_SERVER_HOSTNAME;
 
 function App() {
   const [tweets, setTweets] = useState<any[]>([])
@@ -13,7 +14,7 @@ function App() {
 
   const loadCollections = async () => {
     try {
-      const collectionResponse = await fetch(`${process.env.SERVER_HOSTNAME}/collections`);
+      const collectionResponse = await fetch(`${SERVER_HOSTNAME}/api/collections`);
       const collectionData = await collectionResponse.json();
       setCollection(collectionData);
     } catch (error) {
@@ -24,7 +25,7 @@ function App() {
   const handleCollectionSelect = async (id: string) => {
     try {
       setLoading(true);
-      const collectionResponse = await fetch(`${process.env.SERVER_HOSTNAME}/tweets/collection/` + id);
+      const collectionResponse = await fetch(`${SERVER_HOSTNAME}/api/tweets/collection/` + id);
       const collectionTweetData = await collectionResponse.json();
       setTweets(collectionTweetData);
     } catch (error) {
