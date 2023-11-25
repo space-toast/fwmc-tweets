@@ -27,15 +27,26 @@ services:
       TWITTER_PASSWORD: ${TWITTER_PASSWORD}
       TWITTER_EMAIL: ${TWITTER_EMAIL}
 
+  web:
+    build: ./web
+    ports:
+      - "8080:8080"
+    depends_on:
+      - server
+    environment:
+      SERVER_HOSTNAME: ${SERVER_HOSTNAME}
+
   nginx:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt/archive/fwmc-tweets.com:/etc/letsencrypt/live/fwmc-    
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - server
-      
-      
+      - web
+
 volumes:
   fwmc-tweets-db-data:

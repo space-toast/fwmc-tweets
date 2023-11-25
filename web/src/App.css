@@ -1,0 +1,15 @@
+.collection-list-container {
+    position: fixed;
+    left: 0;
+  }
+
+  .collection-list-container {
+    position: fixed;
+    left: 0;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .collection-list-container {
+      position: static;
+    }
+  }
