@@ -28,7 +28,10 @@ services:
       TWITTER_EMAIL: ${TWITTER_EMAIL}
 
   web:
-    build: ./web
+    build:
+      context: ./web
+      args:
+        VITE_SERVER_HOSTNAME: ${VITE_SERVER_HOSTNAME}
     ports:
       - "8080:8080"
     depends_on:

@@ -1,5 +1,7 @@
 FROM node:14 as build
 WORKDIR /app
+ARG VITE_SERVER_HOSTNAME
+ENV VITE_SERVER_HOSTNAME=$VITE_SERVER_HOSTNAME
 COPY package*.json ./
 RUN npm install
 COPY . .
