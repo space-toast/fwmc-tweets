@@ -12,8 +12,8 @@ export const CollectionList = ({ collections, onCollectionSelect }: CollectionLi
     };
   
     return (
-      <select onChange={handleChange} className="block px-4 py-2 text-black w-full text-left bg-fwmc-light-pink hover:bg-fwmc-pink active:bg-fwmc-dark-pink duration-300 mt-4 w-full">
-        <option value="" disabled selected>Select a Roar N' Response</option>
+      <select onChange={handleChange} className="rounded-md px-4 py-4 text-black w-full text-left bg-fwmc-light-pink hover:bg-fwmc-pink active:bg-fwmc-dark-pink duration-300 mt-2 w-full">
+        <option value="" disabled selected>Select a Rawr N' Response</option>
         {collections.map((collection) => (
           <option key={collection.id} value={collection.id}>
             {collection.name}

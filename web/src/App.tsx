@@ -11,6 +11,11 @@ function App() {
   const [loading, setLoading] = useState<boolean>(false)
   const [collection, setCollection] = useState<any[]>([])
   const [keyword, setKeyword] = useState<string>("")
+  const [showScroller, setShowScroller] = useState(false)
+
+  const scrollTop = () => {
+    window.scrollTo({top: 0, behavior: "smooth"});
+  };
 
   const loadCollections = async () => {
     try {
@@ -37,23 +42,47 @@ function App() {
   }
 
   const handleFilter = async (keyword: string) => {
+    const keywordFilter = keyword.toLowerCase();
+
     const filteredTweets = tweets.filter((tweetAndReply) => {
-      return tweetAndReply.tweet.text.toLowerCase().includes(keyword.toLowerCase()) || tweetAndReply.reply.text.toLowerCase().includes(keyword.toLowerCase())
+      const tweetWords = tweetAndReply.tweet.text.toLowerCase().split(" ");
+      const replyWords = tweetAndReply.reply.text.toLowerCase().split(" ");
+      return tweetWords.includes(keywordFilter) || replyWords.includes(keywordFilter);
     });
     setFilteredTweets(filteredTweets);
+  }
+
+  const checkScrollTop = () => {
+    if (!showScroller && window.scrollY >= 400){
+      setShowScroller(true);
+    } else if (showScroller && window.scrollY <= 100){
+      setShowScroller(false);
+    }
+    else {
+      setShowScroller(false);
+    }
   }
 
   useEffect(() => {
     loadCollections();
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop)
+    return () => window.removeEventListener("scroll", checkScrollTop)
+  }, []);
+
   return (
     <>
       <div className="bg-fwmc-light-blue min-h-screen">
         <div className="mx-auto w-full sm:w-1/2 ">
-          <div className="text-center text-3xl font-bold pt-10">FuwaMoco Roar N' Responses</div>
+          <div className="text-center text-3xl font-bold pt-4">
+            <div className="rounded py-4 px-4 bg-white">
+              FUWAMOCO Rawr N' Responses
+            </div>              
+          </div>
 
-          <div className="flex-row mt-10">
+          <div className="flex-row mt-6">
             <CollectionList collections={collection} onCollectionSelect={handleCollectionSelect} />
           </div>
 
@@ -89,6 +118,12 @@ function App() {
 
           </div>
         </div>
+
+        {showScroller && 
+          <button onClick={scrollTop} className="rounded bg-fwmc-light-pink p-2 fixed bottom-5 right-5">
+            Scroll to top
+          </button>
+        }
       </div>
     </>
   )
