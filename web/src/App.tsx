@@ -103,18 +103,18 @@ function App() {
             {loading && <div className="text-center">Loading...</div>}
 
             {!loading && keyword !== "" ? (
-              <TweetCardList
-                tweets={filteredTweets}
-              />
+              filteredTweets.length > 0 ? (
+                <TweetCardList
+                  tweets={filteredTweets}
+                />
+              ) : (
+                <div className="text-center">No tweets found</div>
+              )
             ) : (
               <TweetCardList
                 tweets={tweets}
               />
             )}
-
-            {(filteredTweets.length === 0 && keyword !== "") && 
-              <div className="text-center">No tweets found</div>
-            }
 
           </div>
         </div>
