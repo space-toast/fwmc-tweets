@@ -31,7 +31,7 @@ export const TweetCard = ({ tweet }: TweetCardProps) => {
 
       <div className="group relative">
         <div className="hidden group-hover:block text-sm bg-gray-200 rounded px-2 py-1 absolute top-0 mt-6 mt-[-10px] right-0 text-black">
-          Go to the original tweet
+          View on Twitter
         </div>
 
         <a href={tweet.permanentUrl} target="_blank" rel="noopener noreferrer" className="absolute top-5 right-5 text-blue-500 z-10">
