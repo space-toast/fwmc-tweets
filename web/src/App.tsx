@@ -63,7 +63,6 @@ function App() {
       setLoading(true);
       const tweetResponse = await fetch(`${SERVER_HOSTNAME}/api/tweets/search?query=` + query);
       const tweetData = await tweetResponse.json();
-      console.log(tweetData);
       setTweets(tweetData);
     } catch (error) {
       console.log(error);
