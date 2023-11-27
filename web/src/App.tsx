@@ -107,7 +107,7 @@ function App() {
         <div className="mx-auto w-full sm:w-1/2 ">
           <div className="text-center text-3xl font-bold pt-4">
             <div className="rounded py-4 px-4 bg-white">
-              FUWAMOCO Rawr N' Responses
+            🐾FUWAMOCO Rawr N' Responses🐾
             </div>
           </div>
           
@@ -142,7 +142,7 @@ function App() {
 
             {!loading && (filteredTweets.length > 0 || tweets.length > 0) ? (
               <TweetCardList
-                tweets={filteredTweets.length > 0 ? filteredTweets : tweets}
+                tweetsAndReplies={filteredTweets.length > 0 ? filteredTweets : tweets}
               />
             ) : (
               (searchPerformed || collectionSelected) && <div className="text-center">No tweets found</div>
